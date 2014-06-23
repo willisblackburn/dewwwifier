@@ -15,12 +15,14 @@ app.set('view engine', 'html');
 app.engine('html', require('hjs').__express);
 
 if ('production' === app.get('env')) {
+    app.use(logger('default'));
     app.set('libs', '//cdnjs.cloudflare.com/ajax/libs'); // Get minified libs from cloud
     app.set('min', '.min');
     app.set('site', 'dewwwifier.com');
     app.set('port', 8000);
 }
 else {
+    app.use(logger('dev'));
     app.set('libs', '/libs'); // Get non-minified libs from source
     app.set('min', '');
     app.set('site', 'pumpkin.local:8000');
@@ -28,7 +30,6 @@ else {
 }
 
 app.use(favicon());
-app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('*', function (req, res, next) {
