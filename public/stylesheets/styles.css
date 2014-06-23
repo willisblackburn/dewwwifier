@@ -22,11 +22,13 @@ div.www {
 }
 
 div.button {
-    margin: 24px 0;
+    margin-top: 24px;
 }
 
 div.footer {
     text-align: center;
+    margin-top: 24px;
+    margin-bottom: 36px;
 }
 
 
