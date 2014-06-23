@@ -5,6 +5,7 @@ var favicon = require('static-favicon');
 var logger = require('morgan');
 var path = require('path');
 var async = require('async');
+var HttpStatus = require('http-status');
 
 var app = express();
 
@@ -16,11 +17,13 @@ app.engine('html', require('hjs').__express);
 if ('production' === app.get('env')) {
     app.set('libs', '//cdnjs.cloudflare.com/ajax/libs'); // Get minified libs from cloud
     app.set('min', '.min');
+    app.set('site', 'dewwwifier.com');
     // TODO: get values from Heroku.
 }
 else {
     app.set('libs', '/libs'); // Get non-minified libs from source
     app.set('min', '');
+    app.set('site', 'pumpkin.local:3000');
     app.set('port', 3000);
 }
 
@@ -28,23 +31,44 @@ app.use(favicon());
 app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.all('*', function (req, res) {
+app.get('*', function (req, res, next) {
     var host = req.headers.host;
-    if (host.substring(0, 4) === 'www.') {
+    // If the request is for the dewwwifier.com site itself, then go to the next handler.
+    if (host === app.get('site'))
+        next();
+    else if (host.substring(0, 4) === 'www.') {
         var dewwwhost = host.substring(4);
-        res.render('index', {
+        res.render('redirect', {
             host: host,
             dewwwhost: dewwwhost,
-            redirect: 'http://' + dewwwhost + req.url
+            redirect: 'http://' + dewwwhost + req.url,
+            site: app.get('site')
         });
     }
     else {
-        res.render('index', {
+        res.render('unexpected', {
             host: host,
-            dewwwhost: '',
-            redirect: ''
+            site: app.get('site')
         });
     }
+});
+
+app.get('/', function (req, res) {
+    res.render('index', {
+        site: app.get('site')
+    });
+});
+
+// Any other get returns 404.
+
+app.get('*', function (req, res) {
+    res.send(HttpStatus.NOT_FOUND);
+});
+
+// If I get any other type of request, just send a bad request error.
+
+app.all('*', function (req, res) {
+    res.send(HttpStatus.METHOD_NOT_ALLOWED);
 });
 
 /// error handlers

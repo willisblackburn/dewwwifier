@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>dewwwifier</title>
+
+    <link rel="stylesheet" media="screen" href="{{settings.libs}}/twitter-bootstrap/3.1.1/css/bootstrap.css"/>
+    <link rel="stylesheet" media="screen" href="/stylesheets/styles.css"/>
+
+    <script src="{{settings.libs}}/jquery/1.11.0/jquery{{settings.min}}.js"></script>
+    <script src="{{settings.libs}}/twitter-bootstrap/3.1.1/js/bootstrap{{settings.min}}.js"></script>
+
+    <script>
+        function goToNonWwwSite() {
+            location = '{{redirect}}';
+        }
+        setTimeout(goToNonWwwSite, 60000);
+    </script>
+
+</head>
+
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="big">
+                <div class="www">&nbsp;</div>
+                <h1>{{dewwwhost}}</h1>
+
+                <p>This web site does not use the www prefix. Just go to {{dewwwhost}} and leave off the www.</p>
+
+                <p>In 60 seconds we will redirect you to {{dewwwhost}}.</p>
+
+                <div class="button">
+                    <button class="btn btn-primary" onclick="goToNonWwwSite()">Go there now</button>
+                </div>
+            </div>
+            <div class="footer">
+                <p><a href="http://{{site}}">dewwwifier</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>

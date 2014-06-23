@@ -1,0 +1,32 @@
+div.big {
+    text-align: center;
+}
+
+div.big h1 {
+    font-size: 48px;
+    font-weight: bold;
+}
+
+div.big p {
+    font-size: 20px;
+}
+
+div.www {
+    background-image: url("/images/nowww.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 160px;
+    height: 160px;
+    display: inline-block;
+    margin: 36px 0 12px 0;
+}
+
+div.button {
+    margin: 24px 0;
+}
+
+div.footer {
+    text-align: center;
+}
+
+

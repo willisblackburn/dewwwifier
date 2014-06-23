@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>dewwwifier</title>
+
+    <link rel="stylesheet" media="screen" href="{{settings.libs}}/twitter-bootstrap/3.1.1/css/bootstrap.css"/>
+    <link rel="stylesheet" media="screen" href="/stylesheets/styles.css"/>
+
+    <script src="{{settings.libs}}/jquery/1.11.0/jquery{{settings.min}}.js"></script>
+    <script src="{{settings.libs}}/twitter-bootstrap/3.1.1/js/bootstrap{{settings.min}}.js"></script>
+
+</head>
+
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="big">
+                <h1>{{host}}</h1>
+
+                <p>The name {{host}} does not start with www.</p>
+
+                <p>This probably means that you've misconfigured your DNS service. You should make www.{{host}}
+                    an ANAME or CNAME for dewwwifier.com but point {{host}} (by itself, with no "www") to your own
+                    server.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>

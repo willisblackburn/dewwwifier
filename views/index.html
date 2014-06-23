@@ -1,72 +1,72 @@
 <!DOCTYPE html>
-<html ng-app="app">
+<html>
 
 <head>
 
-    <title>{{site.title}}</title>
+    <title>dewwwifier</title>
 
     <link rel="stylesheet" media="screen" href="{{settings.libs}}/twitter-bootstrap/3.1.1/css/bootstrap.css"/>
+    <link rel="stylesheet" media="screen" href="/stylesheets/styles.css"/>
 
     <script src="{{settings.libs}}/jquery/1.11.0/jquery{{settings.min}}.js"></script>
     <script src="{{settings.libs}}/twitter-bootstrap/3.1.1/js/bootstrap{{settings.min}}.js"></script>
-
-    <style>
-        div.big {
-            text-align: center;
-        }
-        div.big h1 {
-            font-size: 48px;
-            font-weight: bold;
-        }
-        div.www {
-            background-image: url("/images/no.png");
-            background-position: center;
-            background-repeat: no-repeat;
-            width: 160px;
-            height: 160px;
-            display: inline-block;
-            margin: 36px 0 12px 0;
-        }
-        p {
-            font-size: 20px;
-        }
-    </style>
-
-    <script>
-
-
-    </script>
 
 </head>
 
 <body>
 
 <div class="container">
-    {{#dewwwhost}}
     <div class="row">
         <div class="col-sm-12">
             <div class="big">
                 <div class="www">&nbsp;</div>
-                <h1>{{dewwwhost}}</h1>
-                <p>This web site does not use the www prefix.  Just go to {{dewwwhost}} and leave off the www.</p>
-                <p>In 60 seconds we will redirect you to {{dewwwhost}}.</p>
-                <div><button class="btn btn-submit" onclick="">Go there now</button></div>
+                <h1>dewwwifier</h1>
             </div>
         </div>
     </div>
-    {{/dewwwhost}}
-    {{^dewwwhost}}
     <div class="row">
-        <div class="col-sm-12">
-            <div class="big">
-                <h1>{{host}}</h1>
-                <p>The name {{host}} does not start with www.</p>
-                <p>This probably means that you've misconfigured your DNS service. You should make www.{{host}}
-                a CNAME for dewwwifier.com but point your A record to your own server.</p>
-            </div>
+        <div class="col-sm-6">
+            <h2>Why do we use www?</h2>
+
+            <p>Back in the early days of the Internet, people used domain names to distinguish one service from
+                another. If someone wanted to access the FTP service at "foo.com," then that person might use
+                "ftp.foo.com." Or, for the gopher service, "gopher.foo.com."
+                Or, for the web service, "www.foo.com."</p>
+
+            <p>The email server might be called "mail.foo.com."
+                However the designers of the <a href="http://en.wikipedia.org/wiki/Domain_Name_System">Domain Name System</a>
+                realized that including "mail" in every email address
+                (for example, "your.name@<b>mail</b>.foo.com")
+                would be redundant--it's an email address, so obviously you want the email server--so they
+                included a special type of DNS record, called MX (for "mail exchanger"),
+                that identifies the server that handles all mail for a domain.</p>
+
+            <p>These days "www" has become as redundant as "mail" would have been. When a person types
+                "foo.com" into a browser, obviously that person wants the web server
+                for that domain, so why make the person type "www" to get it?</p>
+
+            <p><a href="http://no-www.org">Another site</a> with an anti-"www" agenda.</p>
+
+            <p><a href="http://www.yes-www.org">Another point of view.</a></p>
+
+            <p><a href="http://www.sitepoint.com/domain-www-or-no-www/">"It doesn't matter."</a></p>
+        </div>
+        <div class="col-sm-6">
+            <h2>What is dewwwifier?</h2>
+
+            <p>dewwwifier is a simple service that encourages users and web site owners to
+                abandon their use of the "www" prefix on web site names.</p>
+
+            <p>To use dewwwifier for your site, simply create an ANAME or CNAME record in your site's
+                DNS configuration that maps the "www" name in your domain to dewwwifier.com. That's it!</p>
+
+            <p>If users try to access your site using the "www" prefix, they will see a message telling them
+                to access your site without the "www" prefix and will be redirected to your non-"www" URL in 60
+                seconds.</p>
+
+            <p><a href="http://www.{{site}}">Try it out</a> by accessing this page with a "www" prefix.</p>
         </div>
     </div>
-    {{/dewwwhost}}
 </div>
 
 </body>
