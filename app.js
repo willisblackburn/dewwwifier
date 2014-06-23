@@ -18,13 +18,13 @@ if ('production' === app.get('env')) {
     app.set('libs', '//cdnjs.cloudflare.com/ajax/libs'); // Get minified libs from cloud
     app.set('min', '.min');
     app.set('site', 'dewwwifier.com');
-    // TODO: get values from Heroku.
+    app.set('port', 8000);
 }
 else {
     app.set('libs', '/libs'); // Get non-minified libs from source
     app.set('min', '');
-    app.set('site', 'pumpkin.local:3000');
-    app.set('port', 3000);
+    app.set('site', 'pumpkin.local:8000');
+    app.set('port', 8000);
 }
 
 app.use(favicon());
