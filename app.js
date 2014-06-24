@@ -19,7 +19,7 @@ if ('production' === app.get('env')) {
     app.set('libs', '//cdnjs.cloudflare.com/ajax/libs'); // Get minified libs from cloud
     app.set('min', '.min');
     app.set('site', 'dewwwifier.com');
-    app.set('port', 8000);
+    app.set('port', process.env.PORT);
 }
 else {
     app.use(logger('dev'));
